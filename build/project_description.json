@@ -1,7 +1,7 @@
 {
     "version":            "1",
     "project_name":       "01_led",
-    "project_version":    "0c157fc-dirty",
+    "project_version":    "7cc87c4-dirty",
     "project_path":       "D:/VScode/ESP32/01_led",
     "idf_path":           "D:/ESP32IDF/frameworks/esp-idf-v5.1.2",
     "build_dir":          "D:/VScode/ESP32/01_led/build",
