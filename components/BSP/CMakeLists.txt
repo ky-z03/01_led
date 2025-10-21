@@ -1,10 +1,10 @@
 set(src_dirs
             LED
-            ESPTIMER)
+            GPTIMER)
 
 set(include_dirs
             LED
-            ESPTIMER)
+            GPTIMER)
 
 set(requires
             driver
