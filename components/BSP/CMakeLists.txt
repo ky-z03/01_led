@@ -1,13 +1,14 @@
 set(src_dirs
             LED
-            UART)
+            ESPTIMER)
 
 set(include_dirs
             LED
-            UART)
+            ESPTIMER)
 
 set(requires
-            driver)
+            driver
+            esp_timer)
 
 idf_component_register(SRC_DIRS ${src_dirs} INCLUDE_DIRS ${include_dirs} REQUIRES ${requires})
 
