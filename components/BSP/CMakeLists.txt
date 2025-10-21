@@ -1,8 +1,10 @@
 set(src_dirs
-            LED)
+            LED
+            KEY)
 
 set(include_dirs
-            LED)
+            LED
+            KEY)
 
 set(requires
             driver)

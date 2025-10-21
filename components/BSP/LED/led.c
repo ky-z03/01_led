@@ -12,5 +12,5 @@ void led_init(void)
     gpio_init_struct.pin_bit_mask = 1ull << LED_GPIO_PIN;   
     gpio_config(&gpio_init_struct);                         
 
-    LED_show();                                                 /* 关闭LED */
+    LED_close();                                                 /* 关闭LED */
 }
