@@ -5,39 +5,30 @@
 #include "nvs_flash.h"
 #include "esp_log.h"
 #include "LED.h"
-#include "GPTIMER.h"
-
+#include "KEY.h"
+#include "WDT.h"
 
 void app_main(void)
 {
-    uint8_t record;
-    esp_err_t ret;
-    gptimer_event_t g_tim_evente;
+    esp_err_t rets;
     
-    ret = nvs_flash_init();                                                                   /* 初始化NVS */
+    rets = nvs_flash_init();            /* 初始化NVS */
 
-    if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND)
+    if (rets == ESP_ERR_NVS_NO_FREE_PAGES || rets == ESP_ERR_NVS_NEW_VERSION_FOUND)
     {
         ESP_ERROR_CHECK(nvs_flash_erase());
-        ret = nvs_flash_init();
+        rets = nvs_flash_init();
     }
-    
-    led_init();                                                                               /* 初始化LED */
-    gptim_int_init(100, 1000000);                                                             /* 初始化通用定时器 */
-    
+    led_init(); 
+    key_init(); 
+    wdt_init(3000000); 
+    LED_show(); 
     while (1)
     {
-        record = 1;
-
-        if (xQueueReceive(queue, &g_tim_evente, 2000))
+        if (key_scan()) 
         {
-            ESP_LOGI("GPTIMER_ALARM", "定时器报警, 计数值： %llu", g_tim_evente.event_count);   /* 打印通用定时器发生一次计数事件后获取到的值 */
-            record--;
+            restart_timer(3000000); /* 喂狗 */
         }
-        else
-        {
-            ESP_LOGW("GPTIMER_ALARM", "错过一次计数事件");
-        }
+        vTaskDelay(10); 
     }
-    vQueueDelete(queue);
 }

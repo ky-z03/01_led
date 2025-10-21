@@ -1,10 +1,12 @@
 set(src_dirs
             LED
-            GPTIMER)
+            KEY
+            WDT)
 
 set(include_dirs
             LED
-            GPTIMER)
+            KEY
+            WDT)
 
 set(requires
             driver
