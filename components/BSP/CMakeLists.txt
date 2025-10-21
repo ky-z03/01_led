@@ -1,10 +1,10 @@
 set(src_dirs
             LED
-            EXIT)
+            UART)
 
 set(include_dirs
             LED
-            EXIT)
+            UART)
 
 set(requires
             driver)
