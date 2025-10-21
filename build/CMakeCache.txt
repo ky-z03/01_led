@@ -23,12 +23,6 @@
 //Value Computed by CMake
 01_led_SOURCE_DIR:STATIC=D:/VScode/ESP32/01_led
 
-//No help, variable specified on the command line.
-CCACHE_ENABLE:UNINITIALIZED=1
-
-//Path to a program.
-CCACHE_FOUND:FILEPATH=D:/ESP32IDF/tools/ccache/4.8/ccache-4.8-windows-x86_64/ccache.exe
-
 //Path to a program.
 CMAKE_ADDR2LINE:FILEPATH=D:/ESP32IDF/tools/xtensa-esp32s3-elf/esp-12.2.0_20230208/xtensa-esp32s3-elf/bin/xtensa-esp32s3-elf-addr2line.exe
 
@@ -342,9 +336,6 @@ Mbed TLS_IS_TOP_LEVEL:STATIC=OFF
 
 //Value Computed by CMake
 Mbed TLS_SOURCE_DIR:STATIC=D:/ESP32IDF/frameworks/esp-idf-v5.1.2/components/mbedtls/mbedtls
-
-//No help, variable specified on the command line.
-PYTHON:UNINITIALIZED=D:\ESP32IDF\python_env\idf5.1_py3.11_env\Scripts\python.exe
 
 //No help, variable specified on the command line.
 PYTHON_DEPS_CHECKED:UNINITIALIZED=1

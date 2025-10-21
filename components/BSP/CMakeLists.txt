@@ -1,10 +1,10 @@
 set(src_dirs
             LED
-            KEY)
+            EXIT)
 
 set(include_dirs
             LED
-            KEY)
+            EXIT)
 
 set(requires
             driver)

@@ -1,7 +1,7 @@
 {
     "version":            "1",
     "project_name":       "01_led",
-    "project_version":    "800c5fe-dirty",
+    "project_version":    "0c157fc-dirty",
     "project_path":       "D:/VScode/ESP32/01_led",
     "idf_path":           "D:/ESP32IDF/frameworks/esp-idf-v5.1.2",
     "build_dir":          "D:/VScode/ESP32/01_led/build",
@@ -40,8 +40,8 @@
             "managed_reqs": [],
             "managed_priv_reqs": [],
             "file": "D:/VScode/ESP32/01_led/build/esp-idf/BSP/libBSP.a",
-            "sources": [ "D:/VScode/ESP32/01_led/components/BSP/LED/led.c", "D:/VScode/ESP32/01_led/components/BSP/KEY/KEY.c" ],
-            "include_dirs": [ "LED", "KEY" ]
+            "sources": [ "D:/VScode/ESP32/01_led/components/BSP/LED/led.c", "D:/VScode/ESP32/01_led/components/BSP/EXIT/EXIT.c" ],
+            "include_dirs": [ "LED", "EXIT" ]
         },
         "app_trace": {
             "alias": "idf::app_trace",
