@@ -2,16 +2,22 @@
 #include "freertos/task.h"
 #include "driver/gpio.h"
 #include "nvs_flash.h"
-#include "esp_log.h"
-#include "LED.h"
+#include "led.h"
 #include "IIC.h"
 #include "XL9555.h"
+#include "EEPROM.h"
 
 i2c_obj_t i2c0_master;
 
+const uint8_t g_text_buf[] = {"ESP32-S3 EEPROM"};   /* 要写入到24c02的字符串数组 */
+#define TEXT_SIZE   sizeof(g_text_buf)              /* TEXT字符串长度 */
+
 void app_main(void)
 {
+    uint16_t i = 0;
+    uint8_t err = 0;
     uint8_t key;
+    uint8_t datatemp[TEXT_SIZE];
     esp_err_t ret;
     
     ret = nvs_flash_init();             /* 初始化NVS */
@@ -24,7 +30,19 @@ void app_main(void)
 
     led_init();                         /* 初始化LED */
     i2c0_master = iic_init(I2C_NUM_0);  /* 初始化IIC0 */
-    xl9555_init(i2c0_master);           /* 初始化XL9555 */
+    xl9555_init(i2c0_master);           /* IO扩展芯片初始化 */
+    at24cxx_init(i2c0_master);          /* 初始化24CXX */
+
+    err = at24cxx_check();              /* 检测AT24C02 */
+    
+    if (err != 0)
+    {
+        while (1)                       /* 检测不到24c02 */
+        {
+            vTaskDelay(500);
+            LED_TOGGLE();               /* LED闪烁 */
+        }
+    }
 
     while(1)
     {
@@ -34,22 +52,14 @@ void app_main(void)
         {
             case KEY0_PRES:
             {
-                xl9555_pin_write(BEEP_IO, 0);
+                at24cxx_write(0, (uint8_t *)g_text_buf, TEXT_SIZE);
+                printf("The data written is:%s\n", g_text_buf);
                 break;
             }
             case KEY1_PRES:
             {
-                xl9555_pin_write(BEEP_IO, 1);
-                break;
-            }
-            case KEY2_PRES:
-            {
-                LED_show();
-                break;
-            }
-            case KEY3_PRES:
-            {
-                LED_close();
+                at24cxx_read(0, datatemp, TEXT_SIZE);
+                printf("The data read is:%s\n", datatemp);
                 break;
             }
             default:
@@ -57,6 +67,15 @@ void app_main(void)
                 break;
             }
         }
-        vTaskDelay(200);
+
+        // i++;
+
+        // if (i == 20)
+        // {
+        //     LED_TOGGLE();               /* LED闪烁 */
+        //     i = 0;
+        // }
+        
+        vTaskDelay(10);
     }
 }
