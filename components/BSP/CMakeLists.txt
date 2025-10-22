@@ -2,13 +2,15 @@ set(src_dirs
             LED
             IIC
             XL9555
-            EEPROM)
+            SPI
+            LCD)
 
 set(include_dirs
             LED
             IIC
             XL9555
-            EEPROM)
+            SPI
+            LCD)
 
 set(requires
             driver

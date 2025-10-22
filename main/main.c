@@ -5,20 +5,16 @@
 #include "led.h"
 #include "IIC.h"
 #include "XL9555.h"
-#include "EEPROM.h"
+#include "SPI.h"
+#include "LCD.h"
 
 i2c_obj_t i2c0_master;
 
-const uint8_t g_text_buf[] = {"ESP32-S3 EEPROM"};   /* 要写入到24c02的字符串数组 */
-#define TEXT_SIZE   sizeof(g_text_buf)              /* TEXT字符串长度 */
-
 void app_main(void)
 {
-    uint16_t i = 0;
-    uint8_t err = 0;
-    uint8_t key;
-    uint8_t datatemp[TEXT_SIZE];
+    uint8_t x = 0;
     esp_err_t ret;
+    
     
     ret = nvs_flash_init();             /* 初始化NVS */
 
@@ -30,52 +26,88 @@ void app_main(void)
 
     led_init();                         /* 初始化LED */
     i2c0_master = iic_init(I2C_NUM_0);  /* 初始化IIC0 */
+    spi2_init();                        /* 初始化SPI2 */
     xl9555_init(i2c0_master);           /* IO扩展芯片初始化 */
-    at24cxx_init(i2c0_master);          /* 初始化24CXX */
+    lcd_init();                         /* 初始化LCD */
 
-    err = at24cxx_check();              /* 检测AT24C02 */
-    
-    if (err != 0)
+    while (1)
     {
-        while (1)                       /* 检测不到24c02 */
+        switch (x)
         {
-            vTaskDelay(500);
-            LED_TOGGLE();               /* LED闪烁 */
+            case 0:
+            {
+                lcd_clear(WHITE);
+                break;
+            }
+            case 1:
+            {
+                lcd_clear(BLACK);
+                break;
+            }
+            case 2:
+            {
+                lcd_clear(BLUE);
+                break;
+            }
+            case 3:
+            {
+                lcd_clear(RED);
+                break;
+            }
+            case 4:
+            {
+                lcd_clear(MAGENTA);
+                break;
+            }
+            case 5:
+            {
+                lcd_clear(GREEN);
+                break;
+            }
+            case 6:
+            {
+                lcd_clear(CYAN);
+                break;
+            }
+            case 7:
+            {
+                lcd_clear(YELLOW);
+                break;
+            }
+            case 8:
+            {
+                lcd_clear(BRRED);
+                break;
+            }
+            case 9:
+            {
+                lcd_clear(GRAY);
+                break;
+            }
+            case 10:
+            {
+                lcd_clear(LGRAY);
+                break;
+            }
+            case 11:
+            {
+                lcd_clear(BROWN);
+                break;
+            }
         }
-    }
 
-    while(1)
-    {
-        key = xl9555_key_scan(0);
-        
-        switch (key)
+        lcd_show_string(10, 40, 240, 32, 32, "ESP32", RED);
+        lcd_show_string(10, 80, 240, 24, 24, "SPILCD TEST", RED);
+        lcd_show_string(10, 110, 240, 16, 16, "ATOM@ALIENTEK", RED);
+        lcd_show_string(10, 150, 240, 12, 12, "ATOM@ALIENTEK", RED);
+        x++;
+
+        if (x == 12)
         {
-            case KEY0_PRES:
-            {
-                at24cxx_write(0, (uint8_t *)g_text_buf, TEXT_SIZE);
-                printf("The data written is:%s\n", g_text_buf);
-                break;
-            }
-            case KEY1_PRES:
-            {
-                at24cxx_read(0, datatemp, TEXT_SIZE);
-                printf("The data read is:%s\n", datatemp);
-                break;
-            }
-            default:
-            {
-                break;
-            }
+            x = 0;
         }
 
-        // i++;
-
-        // if (i == 20)
-        // {
-        //     LED_TOGGLE();               /* LED闪烁 */
-        //     i = 0;
-        // }
-        
-        vTaskDelay(10);
+        LED_TOGGLE();
+        vTaskDelay(500);
     }
 }
