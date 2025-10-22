@@ -1,12 +1,10 @@
 set(src_dirs
             LED
-            KEY
-            WDT)
+            PWM)
 
 set(include_dirs
             LED
-            KEY
-            WDT)
+            PWM)
 
 set(requires
             driver

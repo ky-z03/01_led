@@ -1,7 +1,7 @@
 {
     "version":            "1",
     "project_name":       "01_led",
-    "project_version":    "39a182d-dirty",
+    "project_version":    "09efd67-dirty",
     "project_path":       "D:/VScode/ESP32/01_led",
     "idf_path":           "D:/ESP32IDF/frameworks/esp-idf-v5.1.2",
     "build_dir":          "D:/VScode/ESP32/01_led/build",
@@ -40,8 +40,8 @@
             "managed_reqs": [],
             "managed_priv_reqs": [],
             "file": "D:/VScode/ESP32/01_led/build/esp-idf/BSP/libBSP.a",
-            "sources": [ "D:/VScode/ESP32/01_led/components/BSP/LED/led.c", "D:/VScode/ESP32/01_led/components/BSP/KEY/KEY.c", "D:/VScode/ESP32/01_led/components/BSP/WDT/WDT.c" ],
-            "include_dirs": [ "LED", "KEY", "WDT" ]
+            "sources": [ "D:/VScode/ESP32/01_led/components/BSP/LED/led.c", "D:/VScode/ESP32/01_led/components/BSP/PWM/PWM.c" ],
+            "include_dirs": [ "LED", "PWM" ]
         },
         "app_trace": {
             "alias": "idf::app_trace",
