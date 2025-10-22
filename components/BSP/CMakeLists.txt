@@ -1,10 +1,12 @@
 set(src_dirs
             LED
-            PWM)
+            IIC
+            XL9555)
 
 set(include_dirs
             LED
-            PWM)
+            IIC
+            XL9555)
 
 set(requires
             driver

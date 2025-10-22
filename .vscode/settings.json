@@ -19,6 +19,7 @@
     "span": "c",
     "cstdlib": "c",
     "compare": "c",
-    "format": "c"
+    "format": "c",
+    "iic.h": "c"
 }
 }
