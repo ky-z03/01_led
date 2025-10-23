@@ -3,18 +3,21 @@ set(src_dirs
             IIC
             XL9555
             SPI
-            LCD)
+            LCD
+            ADC)
 
 set(include_dirs
             LED
             IIC
             XL9555
             SPI
-            LCD)
+            LCD
+            ADC)
 
 set(requires
             driver
-            esp_timer)
+            esp_timer
+            esp_adc)
 
 idf_component_register(SRC_DIRS ${src_dirs} INCLUDE_DIRS ${include_dirs} REQUIRES ${requires})
 

@@ -1,7 +1,7 @@
 {
     "version":            "1",
     "project_name":       "01_led",
-    "project_version":    "6e40cfa-dirty",
+    "project_version":    "99ba53a-dirty",
     "project_path":       "D:/VScode/ESP32/01_led",
     "idf_path":           "D:/ESP32IDF/frameworks/esp-idf-v5.1.2",
     "build_dir":          "D:/VScode/ESP32/01_led/build",
@@ -35,13 +35,13 @@
             "dir": "D:/VScode/ESP32/01_led/components/BSP",
             "type": "LIBRARY",
             "lib": "__idf_BSP",
-            "reqs": [ "driver", "esp_timer" ],
+            "reqs": [ "driver", "esp_timer", "esp_adc" ],
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
             "file": "D:/VScode/ESP32/01_led/build/esp-idf/BSP/libBSP.a",
-            "sources": [ "D:/VScode/ESP32/01_led/components/BSP/LED/led.c", "D:/VScode/ESP32/01_led/components/BSP/IIC/IIC.c", "D:/VScode/ESP32/01_led/components/BSP/XL9555/XL9555.c", "D:/VScode/ESP32/01_led/components/BSP/SPI/SPI.c", "D:/VScode/ESP32/01_led/components/BSP/LCD/LCD.c" ],
-            "include_dirs": [ "LED", "IIC", "XL9555", "SPI", "LCD" ]
+            "sources": [ "D:/VScode/ESP32/01_led/components/BSP/LED/led.c", "D:/VScode/ESP32/01_led/components/BSP/IIC/IIC.c", "D:/VScode/ESP32/01_led/components/BSP/XL9555/XL9555.c", "D:/VScode/ESP32/01_led/components/BSP/SPI/SPI.c", "D:/VScode/ESP32/01_led/components/BSP/LCD/LCD.c", "D:/VScode/ESP32/01_led/components/BSP/ADC/ADC1.c" ],
+            "include_dirs": [ "LED", "IIC", "XL9555", "SPI", "LCD", "ADC" ]
         },
         "app_trace": {
             "alias": "idf::app_trace",

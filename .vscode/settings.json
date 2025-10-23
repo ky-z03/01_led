@@ -20,6 +20,7 @@
     "cstdlib": "c",
     "compare": "c",
     "format": "c",
-    "iic.h": "c"
+    "iic.h": "c",
+    "random": "c"
 }
 }
